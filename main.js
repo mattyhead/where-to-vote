@@ -1,5 +1,5 @@
 (function ($, _) {
-  var endpoint = 'http://api.phila.gov/open311/v2/'
+  var endpoint = 'https://api.phila.gov/open311/v2/'
   var params = qs(window.location.search.substr(1))
   // Use mustache.js style brackets in templates
   _.templateSettings = { interpolate: /\{\{(.+?)\}\}/g }
