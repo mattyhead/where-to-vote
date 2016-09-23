@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>311 Service Request Tracker | phila.gov</title>
+    <title>Philly311 Service Request Tracker | phila.gov</title>
     <link rel='icon' type='image/x-icon' href="//cityofphiladelphia.github.io/patterns/images/favicon.ico">
     <meta name="description" content="">
 
@@ -60,8 +60,8 @@
         <nav>
           <ul class="breadcrumbs">
             <li><a href="https://alpha.phila.gov">Home</a></li>
-            <li><a href="http://www.phila.gov">Philly311</a></li>
-            <li>311 Service Request Tracker</li>
+            <li><a href="http://www.phila.gov/311">Philly311</a></li>
+            <li>Philly311 Service Request Tracker</li>
           </ul>
         </nav>
       </div>
@@ -75,38 +75,51 @@
         <div class="row" id="main-row">
           <div class="large-24 columns">
 
-            <h1 class="contrast">311 Service Request Tracker</h1>
+            <h1 class="contrast">Philly311 Service Request Tracker</h1>
 
-            <div class="row">
+            <p class="pvxs mbs">You can use this tool to track the status of your 311 service request.</p>
+
+            <div class="row pvm mbs">
               <div class="small-24 medium-17 columns">
 
                 <form>
-                  <label for="id">Service Request Number</label>
+                  <label for="id">Type in your service request number.</label>
                   <div class="search">
-                    <input type="text" placeholder="10901544" class="search-field" id="id" name="id">
+                    <input type="text" placeholder="For example: 10901544" class="search-field" id="id" name="id">
                     <input type="submit">
                   </div>
                 </form>
 
-                <div id="result">
+                <div id="result" class="pvm mbs">
                   <script type="text/template" id="tmpl-result">
                     <h2>Service Request #{{ service_request_id }}</h2>
-                    <dl>
-                      <dt>Type</dt>
-                      <dd>{{ service_name }}</dd>
 
-                      <dt>Department</dt>
-                      <dd>{{ agency_responsible }}</dd>
+                    <div id="request-details">
+                      <dl>
+                        <dt>Type</dt>
+                        <dd>{{ service_name }}</dd>
+                      </dl>
 
-                      <dt>Address</dt>
-                      <dd>{{ address }}</dd>
+                      <dl>
+                        <dt>Department</dt>
+                        <dd>{{ agency_responsible }}</dd>
+                      </dl>
 
-                      <dt>Status</dt>
-                      <dd>{{ status }}</dd>
+                      <dl>
+                        <dt>Address</dt>
+                        <dd>{{ address }}</dd>
+                      </dl>
 
-                      <dt>Resolution</dt>
-                      <dd>{{ status_notes }}</dd>
-                    </dl>
+                      <dl>
+                        <dt>Status</dt>
+                        <dd>{{ status }}</dd>
+                      </dl>
+
+                      <dl>
+                        <dt>Resolution</dt>
+                        <dd>{{ status_notes }}</dd>
+                      </dl>
+                    </div>
                   </script>
 
                   <script type="text/template" id="tmpl-error">
@@ -123,7 +136,9 @@
             <aside id="secondary" class="related plm-mu small-24 medium-6 columns">
               <h3>Related Content</h3>
               <ul>
-                <li><a class="external" href="http://www.phila.gov/311">Philly311 Homepage</a></li>
+                <li><a class="external" href="http://iframe.publicstuff.com/#?client_id=242">Submit a Philly311 service request</a></li>
+                <li><a class="external" href="http://www.phila.gov/311/aboutus/Pages/default.aspx">Philly311 contact information</a></li>
+                <li><a class="external" href="https://twitter.com/philly311">Tweet @philly311 for a quick response</a></li>
               </ul>
             </aside>
 

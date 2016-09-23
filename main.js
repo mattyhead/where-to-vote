@@ -20,7 +20,6 @@
       } else {
         // Otherwise display the result
         var request = response[0]
-        console.log(request)
         resultContainer.html(templates.result(request))
       }
     }).fail(function () {
