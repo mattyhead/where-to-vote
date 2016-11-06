@@ -1,6 +1,8 @@
 (function ($, _) {
-  var endpoint = 'https://api.phila.gov/open311/v2/'
+  var wardDivisionEndpoint = 'http://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
+  var pollingPlaceEndpoint = 'https://api.phila.gov/polling-places/v1'
   var params = qs(window.location.search.substr(1))
+
   // Use mustache.js style brackets in templates
   _.templateSettings = { interpolate: /\{\{(.+?)\}\}/g }
   var templates = {
@@ -10,25 +12,51 @@
   }
   var resultContainer = $('#result')
 
-  if (params.id) {
+  if (params.address) {
+    // First fetch the ward/division from the address
     resultContainer.html(templates.loading)
-    var queryUrl = constructQueryUrl(params.id)
-    $.getJSON(queryUrl, function (response) {
-      if (response.length < 1 || response[0].errors) {
+    var divisionUrl = constructDivisionUrl(params.address)
+    $.getJSON(divisionUrl, function (response) {
+      console.log(response)
+      if (response.candidates.length < 1) {
         // If there's no response or if there's an error, indicate such
-        resultContainer.html(templates.error({ service_request_id: params.id }))
+        resultContainer.html(templates.error())
       } else {
-        // Otherwise display the result
-        var request = response[0]
-        resultContainer.html(templates.result(request))
+        // Otherwise fetch the polling place from the ward/division
+        var wardDivision = response.candidates[0].attributes.division
+        var pollingPlaceUrl = constructPollingPlaceUrl(wardDivision)
+        $.getJSON(pollingPlaceUrl, function (response) {
+          if (response.features.length < 1) {
+            // if there's no features returned, indicate an error
+            resultContainer.html(templates.error())
+          } else {
+            // Otherwise show the result
+            resultContainer.html(templates.result(response.features[0].attributes))
+          }
+        }).fail(function () {
+          resultContainer.html(templates.error())
+        })
       }
     }).fail(function () {
-      resultContainer.html(templates.error({ service_request_id: params.id }))
+      resultContainer.html(templates.error())
     })
   }
 
-  function constructQueryUrl (id) {
-    return endpoint + 'requests/' + params.id + '.json'
+  function constructDivisionUrl (address) {
+    var params = {
+      Street: address.replace(/\+/g, ' '),
+      outFields: 'division',
+      f: 'json'
+    }
+    return wardDivisionEndpoint + '?' + $.param(params)
+  }
+
+  function constructPollingPlaceUrl (wardDivision) {
+    var params = {
+      ward: wardDivision.substr(0, 2),
+      division: wardDivision.substr(2)
+    }
+    return pollingPlaceEndpoint + '?' + $.param(params)
   }
 
   // decode a uri into a kv representation :: str -> obj

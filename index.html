@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Philly311 service request tracker | phila.gov</title>
+    <title>Where to vote | phila.gov</title>
     <link rel='icon' type='image/x-icon' href="//cityofphiladelphia.github.io/patterns/images/favicon.ico">
     <meta name="description" content="">
 
@@ -60,8 +60,8 @@
         <nav>
           <ul class="breadcrumbs">
             <li><a href="https://alpha.phila.gov">Home</a></li>
-            <li><a href="http://www.phila.gov/311">Philly311</a></li>
-            <li>Philly311 service request tracker</li>
+            <li><a href="http://philadelphiavotes.com">Office of the City Commissioners</a></li>
+            <li>Where to vote</li>
           </ul>
         </nav>
       </div>
@@ -75,56 +75,52 @@
         <div class="row" id="main-row">
           <div class="large-24 columns">
 
-            <h1 class="contrast">Philly311 service request tracker</h1>
+            <h1 class="contrast">Where to vote</h1>
 
-            <p class="pvxs mbs">You can use this tool to track the status of your 311 service request.</p>
+            <p class="pvxs mbs">You can use this tool to find your polling place.</p>
 
             <div class="row pvm mbs">
               <div class="small-24 medium-17 columns">
 
                 <form>
-                  <label for="id">Type in your service request number.</label>
+                  <label for="address">Type in your address.</label>
                   <div class="search">
-                    <input type="text" placeholder="For example: 10901544" class="search-field" id="id" name="id">
+                    <input type="text" placeholder="For example: 1234 Market St" class="search-field" id="address" name="address">
                     <input type="submit">
                   </div>
                 </form>
 
                 <div id="result" class="pvm mbs">
                   <script type="text/template" id="tmpl-result">
-                    <h2>Service Request #{{ service_request_id }}</h2>
+                    <h2>Your polling place</h2>
 
                     <div id="request-details">
                       <dl>
-                        <dt>Type</dt>
-                        <dd>{{ service_name }}</dd>
+                        <dt>Location</dt>
+                        <dd>{{ location }}</dd>
                       </dl>
 
                       <dl>
-                        <dt>Department</dt>
-                        <dd>{{ agency_responsible }}</dd>
+                        <dt>Address</dt>
+                        <dd>{{ display_address }}</dd>
                       </dl>
 
                       <dl>
-                        <dt>Address/Intersection</dt>
-                        <dd>{{ address }}</dd>
+                        <dt>Accessibility</dt>
+                        <dd>{{ building }}</dd>
                       </dl>
 
                       <dl>
-                        <dt>Status</dt>
-                        <dd>{{ status }}</dd>
+                        <dt>Parking</dt>
+                        <dd>{{ parking }}</dd>
                       </dl>
 
-                      <dl>
-                        <dt>Resolution</dt>
-                        <dd>{{ status_notes }} </dd>
-                      </dl>
                     </div>
-                    <p class="mtl"> Please email <a href="mailto:Philly311@phila.gov">Philly311@phila.gov</a> if you have an issue or question about the status of your request. </p>
+                    <p class="mtl">Please call <a href="tel:+12156861590">215-686-1590</a> if you have an issue or question about voting.</p>
                   </script>
 
                   <script type="text/template" id="tmpl-error">
-                    <span class="error">Ticket #<b>{{ service_request_id }}</b> was not found</span>
+                    <span class="error">Address was not found. Please call <a href="tel:+12156861590">215-686-1590</a> for more information.</span>
                   </script>
 
                   <script type="text/template" id="tmpl-loading">
@@ -137,9 +133,9 @@
             <aside id="secondary" class="related plm-mu small-24 medium-6 columns">
               <h3>Related Content</h3>
               <ul>
-                <li><a class="external" href="http://iframe.publicstuff.com/#?client_id=242">Submit a Philly311 service request</a></li>
-                <li><a class="external" href="http://www.phila.gov/311/aboutus/Pages/default.aspx">Philly311 contact information</a></li>
-                <li><a class="external" href="https://twitter.com/philly311">Tweet @philly311 for a quick response</a></li>
+                <li><a class="external" href="http://www.philadelphiavotes.com/en/voters/check-my-registration-status">Check your voter registration status</a></li>
+                <li><a class="external" href="http://www.philadelphiavotes.com/index.php?option=com_voterapp&tmpl=component#ballots">See a sample ballot</a></li>
+                <li><a class="external" href="http://www.philadelphiavotes.com/en/voters/registering-to-vote">Register to vote</a></li>
               </ul>
             </aside>
 
