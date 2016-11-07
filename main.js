@@ -1,5 +1,5 @@
 (function ($, _) {
-  var wardDivisionEndpoint = 'http://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
+  var wardDivisionEndpoint = 'https://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
   var pollingPlaceEndpoint = 'https://api.phila.gov/polling-places/v1'
   var params = qs(window.location.search.substr(1))
 
