@@ -70,6 +70,6 @@
       'eventCategory': 'Behavior',
       'eventAction': label,
       'eventLabel': value
-    });
+    })
   }
 })(window.jQuery, window._)
