@@ -17,7 +17,7 @@
       var divisionUrl = constructDivisionUrl(request.term)
       $.getJSON(divisionUrl, function (response) {
         if (response.candidates) {
-          var addresses = response.candidates.map(function (candidate) {
+          var addresses = $.map(response.candidates, function (candidate) {
             return { label: candidate.address, division: candidate.attributes.division }
           })
           callback(addresses)
