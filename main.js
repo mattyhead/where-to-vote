@@ -1,7 +1,21 @@
 (function ($, _) {
   var wardDivisionEndpoint = 'https://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
   var pollingPlaceEndpoint = 'https://api.phila.gov/polling-places/v1'
-
+  var buildingCodes = {	
+	  'F' : 'BUILDING FULLY ACCESSIBLE',
+	  'A' : 'ALTERNATE ENTRANCE',
+	  'B' : 'BUILDING SUBSTANTIALLY ACCESSIBLE',
+	  'R' : 'ACCESSIBLE WITH RAMP',
+	  'M' : 'BUILDING ACCESSIBLITY MODIFIED',
+	  'N' : 'BUILDING NOT ACCESSIBLE'
+  }
+  var parkingCodes = {	
+  	'N' : 'NO PARKING',
+  	'L' : 'LOADING ZONE',
+  	'H' : 'HANDICAP PARKING',
+  	'G' : 'GENERAL PARKING'
+  }
+  
   // Use mustache.js style brackets in templates
   _.templateSettings = { interpolate: /\{\{(.+?)\}\}/g }
   var templates = {
@@ -34,11 +48,15 @@
       var pollingPlaceUrl = constructPollingPlaceUrl(wardDivision)
       resultContainer.html(templates.loading)
       $.getJSON(pollingPlaceUrl, function (response) {
+        var selected = {};
         if (response.features.length < 1) {
           // if there's no features returned, indicate an error
           resultContainer.html(templates.error())
         } else {
           // Otherwise show the result
+          selected = response.features[0].attributes;
+          selected.building = buildingCodes[selected.building];
+          selected.parking = parkingCodes[selected.parking];
           resultContainer.html(templates.result(response.features[0].attributes))
         }
       }).fail(function () {
