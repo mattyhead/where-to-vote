@@ -21,12 +21,15 @@
             return { label: candidate.address, division: candidate.attributes.division }
           })
           callback(addresses)
+          sendEvent('Autocomplete', 'Hit', request)
         } else {
           callback([])
+          sendEvent('Autocomplete', 'Miss', request)
         }
       })
     },
     select: function (evt, ui) {
+      sendEvent('Autocomplete', 'Select', ui.item.label)
       var wardDivision = ui.item.division
       var pollingPlaceUrl = constructPollingPlaceUrl(wardDivision)
       resultContainer.html(templates.loading)
@@ -61,16 +64,13 @@
     return pollingPlaceEndpoint + '?' + $.param(params)
   }
 
-  // decode a uri into a kv representation :: str -> obj
-  // https://github.com/yoshuawuyts/sheet-router/blob/master/qs.js
-  function qs (uri) {
-    var obj = {}
-    var reg = new RegExp('([^?=&]+)(=([^&]*))?', 'g')
-    uri.replace(/^.*\?/, '').replace(reg, map)
-    return obj
-
-    function map (a0, a1, a2, a3) {
-      obj[window.decodeURIComponent(a1)] = window.decodeURIComponent(a3)
-    }
+  function sendEvent (type, label, value) {
+    var event = new window.CustomEvent(type, {
+      detail: {
+        label: label,
+        value: value
+      }
+    })
+    window.dispatchEvent(event)
   }
 })(window.jQuery, window._)
