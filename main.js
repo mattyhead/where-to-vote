@@ -1,7 +1,23 @@
 (function ($, _) {
   var wardDivisionEndpoint = 'https://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
   var pollingPlaceEndpoint = 'https://api.phila.gov/polling-places/v1'
+  var blg = {	
+	  'F' = 'BUILDING FULLY ACCESSIBLE',
+	  'A' = 'ALTERNATE ENTRANCE',
+	  'B' = 'BUILDING SUBSTANTIALLY ACCESSIBLE',
+	  'R' = 'ACCESSIBLE WITH RAMP',
+	  'M' = 'BUILDING ACCESSIBLITY MODIFIED',
+	  'N' = 'BUILDING NOT ACCESSIBLE'
+  }
+  var prk = {	
+  	'N' = 'NO PARKING',
+  	'L' = 'LOADING ZONE',
+  	'H' = 'HANDICAP PARKING',
+  	'G' = 'GENERAL PARKING'
+  }	
 
+  
+  
   // Use mustache.js style brackets in templates
   _.templateSettings = { interpolate: /\{\{(.+?)\}\}/g }
   var templates = {
