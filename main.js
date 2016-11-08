@@ -65,13 +65,6 @@
   }
 
   function sendEvent (type, label, value) {
-    if (!window.CustomEvent || !window.dispatchEvent) return
-    var event = new window.CustomEvent(type, {
-      detail: {
-        label: label,
-        value: value
-      }
-    })
-    window.dispatchEvent(event)
+    $(window).trigger({ type: type, label: label, value: value })
   }
 })(window.jQuery, window._)
