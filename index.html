@@ -17,6 +17,8 @@
     <!--pattern stylesheet includes foundation css -->
     <link rel="stylesheet" href="//cityofphiladelphia.github.io/patterns/dist/1.4.1/css/patterns.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
     <link rel="stylesheet" href="styles.css">
 
     <link rel="canonical" href="">
@@ -48,7 +50,7 @@
     </div>
     <div class="small-24 medium-12 columns">
       <form class="search" data-global-search>
-  <input type="text" placeholder="Search alpha.phila.gov" class="search-field"><input type="submit">
+  <input type="text" placeholder="Search beta.phila.gov" class="search-field"><input type="submit">
 </form>
 
     </div>
@@ -82,13 +84,8 @@
             <div class="row pvm mbs">
               <div class="small-24 medium-17 columns">
 
-                <form>
-                  <label for="address">Type in your address.</label>
-                  <div class="search">
-                    <input type="text" placeholder="For example: 1234 Market St" class="search-field" id="address" name="address">
-                    <input type="submit">
-                  </div>
-                </form>
+                  <label for="address">Type in your address and select the matching result.</label>
+                  <input type="text" placeholder="For example: 1234 Market St" class="search-field" id="address" name="address">
 
                 <div id="result" class="pvm mbs">
                   <script type="text/template" id="tmpl-result">
@@ -116,7 +113,6 @@
                       </dl>
 
                     </div>
-                    <p class="mtl">Please call <a href="tel:+12156861590">215-686-1590</a> if you have an issue or question about voting.</p>
                   </script>
 
                   <script type="text/template" id="tmpl-error">
@@ -127,6 +123,8 @@
                     <div><i class="fa fa-spinner fa-lg spin"></i> Loading...</div>
                   </script>
                 </div>
+
+                <p class="mtl">Please call <a href="tel:+12156861590">215-686-1590</a> if you have an issue or question about voting.</p>
 
               </div>
 
@@ -202,6 +200,8 @@
     <script src="//cityofphiladelphia.github.io/patterns/dist/1.4.1/js/patterns.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <script src="main.js"></script>
   </body>

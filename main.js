@@ -1,7 +1,6 @@
 (function ($, _) {
   var wardDivisionEndpoint = 'https://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
   var pollingPlaceEndpoint = 'https://api.phila.gov/polling-places/v1'
-  var params = qs(window.location.search.substr(1))
 
   // Use mustache.js style brackets in templates
   _.templateSettings = { interpolate: /\{\{(.+?)\}\}/g }
@@ -11,36 +10,39 @@
     loading: $('#tmpl-loading').html()
   }
   var resultContainer = $('#result')
+  var addressEl = $('#address')
 
-  if (params.address) {
-    // First fetch the ward/division from the address
-    resultContainer.html(templates.loading)
-    var divisionUrl = constructDivisionUrl(params.address)
-    $.getJSON(divisionUrl, function (response) {
-      console.log(response)
-      if (response.candidates.length < 1) {
-        // If there's no response or if there's an error, indicate such
-        resultContainer.html(templates.error())
-      } else {
-        // Otherwise fetch the polling place from the ward/division
-        var wardDivision = response.candidates[0].attributes.division
-        var pollingPlaceUrl = constructPollingPlaceUrl(wardDivision)
-        $.getJSON(pollingPlaceUrl, function (response) {
-          if (response.features.length < 1) {
-            // if there's no features returned, indicate an error
-            resultContainer.html(templates.error())
-          } else {
-            // Otherwise show the result
-            resultContainer.html(templates.result(response.features[0].attributes))
-          }
-        }).fail(function () {
+  addressEl.autocomplete({
+    source: function (request, callback) {
+      var divisionUrl = constructDivisionUrl(request.term)
+      $.getJSON(divisionUrl, function (response) {
+        if (response.candidates) {
+          var addresses = response.candidates.map(function (candidate) {
+            return { label: candidate.address, division: candidate.attributes.division }
+          })
+          callback(addresses)
+        } else {
+          callback([])
+        }
+      })
+    },
+    select: function (evt, ui) {
+      var wardDivision = ui.item.division
+      var pollingPlaceUrl = constructPollingPlaceUrl(wardDivision)
+      resultContainer.html(templates.loading)
+      $.getJSON(pollingPlaceUrl, function (response) {
+        if (response.features.length < 1) {
+          // if there's no features returned, indicate an error
           resultContainer.html(templates.error())
-        })
-      }
-    }).fail(function () {
-      resultContainer.html(templates.error())
-    })
-  }
+        } else {
+          // Otherwise show the result
+          resultContainer.html(templates.result(response.features[0].attributes))
+        }
+      }).fail(function () {
+        resultContainer.html(templates.error())
+      })
+    }
+  })
 
   function constructDivisionUrl (address) {
     var params = {
