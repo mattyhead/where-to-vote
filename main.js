@@ -83,6 +83,11 @@
   }
 
   function sendEvent (type, label, value) {
-    $(window).trigger({ type: type, label: label, value: value })
+    dataLayer.push({
+      'event': type,
+      'eventCategory': 'Behavior',
+      'eventAction': label,
+      'eventLabel': value
+    })
   }
 })(window.jQuery, window._)
