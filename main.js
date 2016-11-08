@@ -65,6 +65,7 @@
   }
 
   function sendEvent (type, label, value) {
+    if (!window.CustomEvent || !window.dispatchEvent) return
     var event = new window.CustomEvent(type, {
       detail: {
         label: label,
