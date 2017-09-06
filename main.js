@@ -67,11 +67,7 @@
   })
 
   function constructDivisionUrl (address) {
-    var params = {
-      address: address.replace(/\+/g, ' '),
-      callback: 'back'
-    }
-    return wardDivisionEndpoint + '?' + $.param(params) 
+    return wardDivisionEndpoint + '/' + address.replace(/\+/g, ' ') 
   }
 
   function constructPollingPlaceUrl (wardDivision) {
