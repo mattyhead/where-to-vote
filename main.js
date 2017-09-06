@@ -1,19 +1,20 @@
 (function ($, _) {
-  var wardDivisionEndpoint = 'https://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
-  var pollingPlaceEndpoint = 'https://api.phila.gov/polling-places/v1'
-  var buildingCodes = {	
-	  'F' : 'BUILDING FULLY ACCESSIBLE',
-	  'A' : 'ALTERNATE ENTRANCE',
-	  'B' : 'BUILDING SUBSTANTIALLY ACCESSIBLE',
-	  'R' : 'ACCESSIBLE WITH RAMP',
-	  'M' : 'BUILDING ACCESSIBLITY MODIFIED',
-	  'N' : 'BUILDING NOT ACCESSIBLE'
+//  var wardDivisionEndpoint = 'https://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
+  var wardDivisionEndpoint = 'https://api.phillyvotes.org/autocomplete'
+  var pollingPlaceEndpoint = 'https://www.philadelphiavotes.com/'
+  var buildingCodes = { 
+    'F' : 'BUILDING FULLY ACCESSIBLE',
+    'A' : 'ALTERNATE ENTRANCE',
+    'B' : 'BUILDING SUBSTANTIALLY ACCESSIBLE',
+    'R' : 'ACCESSIBLE WITH RAMP',
+    'M' : 'BUILDING ACCESSIBLITY MODIFIED',
+    'N' : 'BUILDING NOT ACCESSIBLE'
   }
-  var parkingCodes = {	
-  	'N' : 'NO PARKING',
-  	'L' : 'LOADING ZONE',
-  	'H' : 'HANDICAP PARKING',
-  	'G' : 'GENERAL PARKING'
+  var parkingCodes = {  
+    'N' : 'NO PARKING',
+    'L' : 'LOADING ZONE',
+    'H' : 'HANDICAP PARKING',
+    'G' : 'GENERAL PARKING'
   }
   
   // Use mustache.js style brackets in templates
@@ -30,9 +31,9 @@
     source: function (request, callback) {
       var divisionUrl = constructDivisionUrl(request.term)
       $.getJSON(divisionUrl, function (response) {
-        if (response.candidates) {
-          var addresses = $.map(response.candidates, function (candidate) {
-            return { label: candidate.address, division: candidate.attributes.division }
+        if (response.length) {
+          var addresses = $.map(response, function (candidate) {
+            return { label: candidate.label, division: candidate.division }
           })
           callback(addresses)
           sendEvent('Autocomplete', 'Hit', request)
@@ -67,19 +68,22 @@
 
   function constructDivisionUrl (address) {
     var params = {
-      Street: address.replace(/\+/g, ' '),
-      outFields: 'division',
-      f: 'json'
+      address: address.replace(/\+/g, ' '),
+      callback: 'back'
     }
-    return wardDivisionEndpoint + '?' + $.param(params) + '&callback=?'
+    return wardDivisionEndpoint + '?' + $.param(params) 
   }
 
   function constructPollingPlaceUrl (wardDivision) {
     var params = {
       ward: wardDivision.substr(0, 2),
-      division: wardDivision.substr(2)
+      division: wardDivision.substr(2),
+      view: 'json',
+      option: 'com_pollingplaces'
     }
-    return pollingPlaceEndpoint + '?' + $.param(params) + '&callback=?'
+    var url = pollingPlaceEndpoint + '?' + $.param(params)
+    console.log(url)
+    return url
   }
 
   function sendEvent (type, label, value) {

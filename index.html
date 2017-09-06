@@ -1,10 +1,208 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-        "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Page title</title>
-</head>
-<body>
-    <h1>{{ hello }}</h1>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Where to vote | phila.gov</title>
+    <link rel='icon' type='image/x-icon' href="//cityofphiladelphia.github.io/patterns/images/favicon.ico">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!--Ionicons are optional-->
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!--pattern stylesheet includes foundation css -->
+    <link rel="stylesheet" href="//cityofphiladelphia.github.io/patterns/dist/1.4.1/css/patterns.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="canonical" href="">
+
+  </head>
+
+  <body>
+
+    <!-- Google Tag Manager [phila.gov] -->
+      <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MC6CR2"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MC6CR2');</script>
+    <!-- End Google Tag Manager -->
+
+    <div class="site" id="page">
+      <!-- Begin .header -->
+<header data-swiftype-index='false' class="site-header">
+  <div class="row site-branding">
+    <div class="small-24 medium-12 columns">
+      <a href="https://alpha.phila.gov" class="logo pam">
+        <img src="//cityofphiladelphia.github.io/patterns/images/city-of-philadelphia-white.png" alt="City of Philadelphia">
+      </a>
+      <h1 class="site-title">phila.gov</h1>
+      <h2 class="site-description">City of Philadelphia</h2>
+    </div>
+    <div class="small-24 medium-12 columns">
+      <form class="search" data-global-search>
+  <input type="text" placeholder="Search beta.phila.gov" class="search-field"><input type="submit">
+</form>
+
+    </div>
+  </div>
+  <div class="row expanded">
+  <div class="columns">
+    <div class="row">
+      <div class="large-24 columns">
+        <nav>
+          <ul class="breadcrumbs">
+            <li><a href="https://alpha.phila.gov">Home</a></li>
+            <li><a href="http://philadelphiavotes.com">Office of the City Commissioners</a></li>
+            <li>Where to vote</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+</header>
+
+      <article data-swiftype-name="body" data-swiftype-type="text">
+        <div class="row" id="main-row">
+          <div class="large-24 columns">
+
+            <h1 class="contrast">Where to vote</h1>
+
+            <p class="pvxs mbs">You can use this tool to find your polling place.</p>
+
+            <div class="row pvm mbs">
+              <div class="small-24 medium-17 columns">
+
+                  <label for="address">Type in your address and select the matching result.</label>
+                  <input type="text" placeholder="For example: 1234 Market St" class="search-field" id="address" name="address">
+
+                <div id="result" class="pvm mbs">
+                  <script type="text/template" id="tmpl-result">
+                    <h2>Your polling place</h2>
+
+                    <div id="request-details">
+                      <dl>
+                        <dt>Location</dt>
+                        <dd>{{ location }}</dd>
+                      </dl>
+
+                      <dl>
+                        <dt>Address</dt>
+                        <dd>{{ display_address }}</dd>
+                      </dl>
+
+                      <dl>
+                        <dt>Accessibility</dt>
+                        <dd>{{ building }}</dd>
+                      </dl>
+
+                      <dl>
+                        <dt>Parking</dt>
+                        <dd>{{ parking }}</dd>
+                      </dl>
+
+                    </div>
+                  </script>
+
+                  <script type="text/template" id="tmpl-error">
+                    <span class="error">Address was not found. Please call <a href="tel:+12156861590">215-686-1590</a> for more information.</span>
+                  </script>
+
+                  <script type="text/template" id="tmpl-loading">
+                    <div><i class="fa fa-spinner fa-lg spin"></i> Loading...</div>
+                  </script>
+                </div>
+
+                <p class="mtl">Please call <a href="tel:+12156861590">215-686-1590</a> if you have an issue or question about voting.</p>
+
+              </div>
+
+            <aside id="secondary" class="related plm-mu small-24 medium-6 columns">
+              <h3>Related Content</h3>
+              <ul>
+                <li><a class="external" href="http://www.philadelphiavotes.com/en/voters/check-my-registration-status">Check your voter registration status</a></li>
+                <li><a class="external" href="http://www.philadelphiavotes.com/en/voters/view-a-sample-ballot">See a sample ballot</a></li>
+                <li><a class="external" href="http://www.philadelphiavotes.com/en/voters/registering-to-vote">Register to vote</a></li>
+              </ul>
+            </aside>
+
+          </div>
+        </div>
+    </div><!-- End #page -->
+    <div class="row feedback">
+      <div class="small-24 columns">
+        <div class="panel center mbl"><p>We're still working on this page's design and content. <a href="http://alpha.phila.gov/feedback/">How can we make it better?</a></p></div>
+      </div>
+    </div>
+  </article>
+    <!-- Begin Footer -->
+<footer data-swiftype-index='false' class="site-footer">
+  <section class="fat">
+    <div class="row">
+      <div class="large-8 columns">
+        <h1>Government</h1>
+        <nav>
+          <ul>
+            <li><a href="http://alpha.phila.gov">alpha.phila.gov</a></li>
+            <li><a href="http://alpha.phila.gov/departments">City Government Directory</a></li>
+            <li><a href="http://www.phila.gov/mayor">Mayor's Office</a></li>
+            <li><a href="http://iframe.publicstuff.com/#?client_id=242">Report an Issue / 311</a></li>
+            <li><a href="http://cityofphiladelphia.wordpress.com/">News</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="large-16 columns">
+        <h1>Browse alpha.phila.gov</h1>
+        <nav>
+          <ul class="columns-2">
+            <li><a href="http://alpha.phila.gov/browse/health">Health</a></li>
+            <li><a href="http://alpha.phila.gov/browse/legal">Legal</a></li>
+            <li><a href="http://alpha.phila.gov/browse/payments-and-taxes">Payments and Taxes</a></li>
+            <li><a href="http://alpha.phila.gov/browse/permits-licenses">Permits and Licenses</a></li>
+            <li><a href="http://alpha.phila.gov/browse/property-housing">Property and Housing</a></li>
+            <li><a href="http://alpha.phila.gov/browse/public-safety">Public Safety</a></li>
+            <li><a href="http://alpha.phila.gov/browse/streets-and-utilities">Streets and Utilities</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+  <div class="row classic center">
+    <div class="columns">
+      <nav>
+        <ul class="inline-list">
+          <li><a href="http://alpha.phila.gov/terms-of-use">Terms of use</a></li>
+          <li><a href="http://www.phila.gov/privacy/pdfs/FinalCityOpenRecords.pdf">Right to know (pdf)</a></li>
+          <li><a href="http://alpha.phila.gov/privacypolicy">Privacy Policy</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- End Footer -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.js"></script>
+
+    <script src="//cityofphiladelphia.github.io/patterns/dist/1.4.1/js/patterns.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="main.js"></script>
+  </body>
 </html>
