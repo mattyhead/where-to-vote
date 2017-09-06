@@ -1,6 +1,6 @@
 (function ($, _) {
 //  var wardDivisionEndpoint = 'https://gis.phila.gov/arcgis/rest/services/ElectionGeocoder/GeocodeServer/findAddressCandidates'
-  var wardDivisionEndpoint = 'https://apis.phillyvotes.org/autocomplete'
+  var wardDivisionEndpoint = 'https://apis.philadelphiavotes.com/autocomplete'
   var pollingPlaceEndpoint = 'https://www.philadelphiavotes.com/'
   var buildingCodes = { 
     'F' : 'BUILDING FULLY ACCESSIBLE',
