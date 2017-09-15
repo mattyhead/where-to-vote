@@ -29,11 +29,10 @@
 
   addressEl.autocomplete({
     source: function (request, callback) {
-            var divisionUrl = constructDivisionUrl(request.term)
+      var divisionUrl = constructDivisionUrl(request.term)
       $.getJSON(divisionUrl, function (response) {
-
-        if (response.status=="success") {
-          var addresses = $.map(response.data, function (candidate) {
+        if (response.length) {
+          var addresses = $.map(response, function (candidate) {
             return { label: candidate.label, division: candidate.division }
           })
           callback(addresses)
@@ -46,11 +45,11 @@
     },
     select: function (evt, ui) {
       sendEvent('Autocomplete', 'Select', ui.item.label)
-            var wardDivision = ui.item.division
+      var wardDivision = ui.item.division
       var pollingPlaceUrl = constructPollingPlaceUrl(wardDivision)
       resultContainer.html(templates.loading)
       $.getJSON(pollingPlaceUrl, function (response) {
-              var selected = {};
+        var selected = {};
         if (response.features.length < 1) {
           // if there's no features returned, indicate an error
           resultContainer.html(templates.error())
@@ -68,7 +67,7 @@
   })
 
   function constructDivisionUrl (address) {
-        return wardDivisionEndpoint + '/' + address.replace(/\+/g, ' ') 
+    return wardDivisionEndpoint + '/' + address.replace(/\+/g, ' ') 
   }
 
   function constructPollingPlaceUrl (wardDivision) {
@@ -79,7 +78,8 @@
       option: 'com_pollingplaces'
     }
     var url = pollingPlaceEndpoint + '?' + $.param(params)
-        return url
+    console.log(url)
+    return url
   }
 
   function sendEvent (type, label, value) {
