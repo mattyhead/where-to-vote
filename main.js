@@ -29,6 +29,7 @@
 
   addressEl.autocomplete({
     source: function (request, callback) {
+      console.log(request, callback);
       var divisionUrl = constructDivisionUrl(request.term)
       $.getJSON(divisionUrl, function (response) {
         if (response.length) {
@@ -45,10 +46,12 @@
     },
     select: function (evt, ui) {
       sendEvent('Autocomplete', 'Select', ui.item.label)
+      console.log(evt, ui);
       var wardDivision = ui.item.division
       var pollingPlaceUrl = constructPollingPlaceUrl(wardDivision)
       resultContainer.html(templates.loading)
       $.getJSON(pollingPlaceUrl, function (response) {
+      console.log(response);
         var selected = {};
         if (response.features.length < 1) {
           // if there's no features returned, indicate an error
