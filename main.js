@@ -29,8 +29,7 @@
 
   addressEl.autocomplete({
     source: function (request, callback) {
-      console.log(request, callback);
-      var divisionUrl = constructDivisionUrl(request.term)
+            var divisionUrl = constructDivisionUrl(request.term)
       $.getJSON(divisionUrl, function (response) {
 
         if (response.status=="success") {
@@ -47,13 +46,11 @@
     },
     select: function (evt, ui) {
       sendEvent('Autocomplete', 'Select', ui.item.label)
-      console.log(evt, ui);
-      var wardDivision = ui.item.division
+            var wardDivision = ui.item.division
       var pollingPlaceUrl = constructPollingPlaceUrl(wardDivision)
       resultContainer.html(templates.loading)
       $.getJSON(pollingPlaceUrl, function (response) {
-      console.log(response);
-        var selected = {};
+              var selected = {};
         if (response.features.length < 1) {
           // if there's no features returned, indicate an error
           resultContainer.html(templates.error())
@@ -71,8 +68,7 @@
   })
 
   function constructDivisionUrl (address) {
-    console.log('constructDU',  wardDivisionEndpoint + '/' + address.replace(/\+/g, ' ') );
-    return wardDivisionEndpoint + '/' + address.replace(/\+/g, ' ') 
+        return wardDivisionEndpoint + '/' + address.replace(/\+/g, ' ') 
   }
 
   function constructPollingPlaceUrl (wardDivision) {
@@ -83,8 +79,7 @@
       option: 'com_pollingplaces'
     }
     var url = pollingPlaceEndpoint + '?' + $.param(params)
-    console.log(url)
-    return url
+        return url
   }
 
   function sendEvent (type, label, value) {
