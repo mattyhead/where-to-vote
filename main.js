@@ -32,8 +32,9 @@
       console.log(request, callback);
       var divisionUrl = constructDivisionUrl(request.term)
       $.getJSON(divisionUrl, function (response) {
-        if (response.length) {
-          var addresses = $.map(response, function (candidate) {
+
+        if (response.status=="success") {
+          var addresses = $.map(response.data, function (candidate) {
             return { label: candidate.label, division: candidate.division }
           })
           callback(addresses)
