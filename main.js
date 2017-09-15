@@ -70,6 +70,7 @@
   })
 
   function constructDivisionUrl (address) {
+    console.log('constructDU',  wardDivisionEndpoint + '/' + address.replace(/\+/g, ' ') );
     return wardDivisionEndpoint + '/' + address.replace(/\+/g, ' ') 
   }
 
