@@ -34,7 +34,7 @@
 
         if (response.status=="success") {
           var addresses = $.map(response.data, function (candidate) {
-            return { label: candidate.label, division: candidate.division }
+            return { label: candidate.label, division: candidate.value }
           })
           callback(addresses)
           sendEvent('Autocomplete', 'Hit', request)
