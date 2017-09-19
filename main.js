@@ -28,6 +28,7 @@
   var addressEl = $('#address')
 
   addressEl.autocomplete({
+    minLength: 3,
     source: function (request, callback) {
             var divisionUrl = constructDivisionUrl(request.term)
       $.getJSON(divisionUrl, function (response) {
