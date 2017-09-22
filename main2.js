@@ -1,6 +1,6 @@
 Mapboard.default({
   // config options will go here
-  baseConfig: '',
+  baseConfig: '//rawgit.com/rbrtmrtn/mapboard-base-config/affe2b676697273ca10805c1cb3f663754dd08ae/config.js',
   rootStyle: {
     // give the mapboard a height of 600 pixels
     height: '600px'
