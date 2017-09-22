@@ -27,6 +27,15 @@ Mapboard.default({
       }
     }
   },
+  basemaps: {
+    pwd: {
+      url: '//tiles.arcgis.com/tiles/fLeGjb7u4uXqeF9q/arcgis/rest/services/CityBasemap/MapServer',
+      tiledLayers: [
+        'cityBasemapLabels'
+      ],
+      type: 'featuremap'
+    }
+  },
 
   defaultAddress: '1234 MARKET ST'
 });
