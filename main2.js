@@ -1,6 +1,6 @@
 Mapboard.default({
   // config options will go here
-
+  baseConfig: '',
   rootStyle: {
     // give the mapboard a height of 600 pixels
     height: '600px'
