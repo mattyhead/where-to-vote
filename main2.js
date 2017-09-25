@@ -1,6 +1,6 @@
 Mapboard.default({
   // config options will go here
-  baseConfig: '//raw.githubusercontent.com/mattyhead/config/master/config.js',
+  baseConfig: '//rawgit.com/mattyhead/config/master/config.js',
   rootStyle: {
     // give the mapboard a height of 600 pixels
     height: '600px'
